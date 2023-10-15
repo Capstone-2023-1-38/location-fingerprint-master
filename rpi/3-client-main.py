@@ -17,7 +17,7 @@ if __name__ == "__main__":
 
     # 신호세기 측정 결과를 파일로 저장할 건데, 이런 파일들을 모아 둘 폴더 이름
     if os.path.isdir(common.dir_name_realtime) == False:  # 만약, 디렉토리가 존재하지 않으면
-        os.mkdir(out_dir)
+        os.mkdir(common.dir_name_realtime)
 
     out_filename_base = common.dir_name_realtime + '/' + 'client-measure-realtime'
     wifi_dev_name = 'wlan0'

@@ -141,12 +141,12 @@ if __name__=="__main__":
                     print('BEST: distances : ', distances[0])
                     print()
 
-                    # response = requests.post("http://127.0.0.1:8080/sendLocations", json={
-                    #     'address': str(addrs[sock][0]),
-                    #     'distance': distances[0],
-                    #     'x': cell_blocks[0][1],
-                    #     'y': cell_blocks[0][0]
-                    # })
+                    response = requests.post("http://127.0.0.1:8080/sendLocations", json={
+                        'address': str(addrs[sock][0]),
+                        'distance': distances[0],
+                        'x': cell_blocks[0][1],
+                        'y': cell_blocks[0][0]
+                    })
 
         #except:
         print('Finishing up the server program...')
