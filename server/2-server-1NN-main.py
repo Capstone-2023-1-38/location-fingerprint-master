@@ -88,6 +88,8 @@ if __name__=="__main__":
 
                     # 공백문자를 기준으로 분리해 낸다
                     msg_split = msgFromClient.split(common.space_delimiter)
+                    mac = msg_split[0]
+                    msg_split = msg_split[1:]
                     for i in range(len(msg_split)):
                         msg_split[i] = msg_split[i].rstrip()  # 끝에있는 개행문자 제거
 
@@ -136,13 +138,13 @@ if __name__=="__main__":
                         find_closest_cell_blocks(client_radio_map_median, radio_map, how_many)
 
                     #print(cell_blocks, distances)
-                    print('Address: ', addrs[sock][0])
+                    print('Address: ', mac)
                     print('BEST: cell blocks (y,x) :', cell_blocks[0])
                     print('BEST: distances : ', distances[0])
                     print()
 
                     response = requests.post("http://127.0.0.1:8080/sendLocations", json={
-                        'address': str(addrs[sock][0]),
+                        'address': mac,
                         'distance': distances[0],
                         'x': cell_blocks[0][1],
                         'y': cell_blocks[0][0]

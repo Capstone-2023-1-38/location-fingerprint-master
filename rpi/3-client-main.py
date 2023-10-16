@@ -9,6 +9,8 @@ import os
 import time
 from client_utils import get_msg2send
 import socket
+import re
+from uuid import getnode
 
 if __name__ == "__main__":
 
@@ -51,7 +53,8 @@ if __name__ == "__main__":
             #print('Prepping msg to send to server...')
             msg2send = get_msg2send(out_filename_now)
             print('send msg : ', msg2send)
-            cli_socket.sendall(bytes(msg2send, "utf-8"))  # 인코딩이 사용되었고, 서버에서 디코딩 할 때 같은 utf-8 방식으로 디코딩 해야한다.
+            mac = ':'.join(re.findall('..', '%012x' % getnode()))
+            cli_socket.sendall(bytes(mac + " " + msg2send, "utf-8"))  # 인코딩이 사용되었고, 서버에서 디코딩 할 때 같은 utf-8 방식으로 디코딩 해야한다.
             
             # sleep을 오래할 수록 좋아서 1초를 + 해줬다.
             # sleep을 하지 않으면 iwlist scan 도중에 오류가 발생할 수 있다.
